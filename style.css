@@ -1,0 +1,446 @@
+/* ---------- Design tokens ---------- */
+:root {
+    --ink: #1b2a2f;          /* main text */
+    --muted: #4f6168;        /* secondary text */
+    --paper: #f2f5f4;        /* page background */
+    --surface: #ffffff;      /* panels and inputs */
+    --line: #d3dcda;         /* borders */
+    --brand: #17594a;        /* primary green (book-cloth) */
+    --brand-dark: #0f3f34;   /* hover / header */
+    --accent: #f0b429;       /* gold highlight (book spine / nav hover) */
+    --focus: #1d4ed8;        /* keyboard focus ring */
+
+    --font-head: Georgia, "Times New Roman", serif;
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    --page-width: 60rem;
+    --radius: 8px;
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--paper);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-head);
+    line-height: 1.25;
+    margin: 0 0 0.75rem;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
+
+p {
+    margin: 0 0 0.75rem;
+}
+
+a {
+    color: var(--brand);
+    text-underline-offset: 0.2em;
+}
+
+a:hover {
+    color: var(--brand-dark);
+}
+
+:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+}
+
+/* ---------- Header and navigation ---------- */
+header {
+    background: var(--brand-dark);
+    color: #ffffff;
+    border-bottom: 4px solid var(--accent);
+    /* side padding lines the header up with the centered <main> */
+    padding: 1.5rem max(1rem, calc((100% - var(--page-width)) / 2));
+}
+
+header h1 {
+    margin-bottom: 0.25rem;
+    color: #ffffff;
+}
+
+header > p {
+    margin: 0 0 1rem;
+    color: #d6e6e1;
+    max-width: 40rem;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+nav a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+nav a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--ink);
+}
+
+header :focus-visible {
+    outline-color: #ffffff;
+}
+
+/* ---------- Main content ---------- */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+main > section {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+}
+
+main > section + section {
+    margin-top: 1.5rem;
+}
+
+/* Forms and detail pages read better at a narrower width */
+main > section:has(form) {
+    max-width: 40rem;
+}
+
+/* ---------- Search (home page) ---------- */
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    display: block;
+    width: 100%;
+    max-width: 32rem;
+    padding: 0.65rem 0.75rem;
+    font: inherit;
+    color: var(--ink);
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: 6px;
+}
+
+input[type="text"]:hover,
+input[type="number"]:hover,
+select:hover,
+textarea:hover {
+    border-color: var(--muted);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid var(--focus);
+    outline-offset: 1px;
+    border-color: var(--focus);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 8rem;
+}
+
+/* On the home page the search box and button sit side by side */
+#search {
+    display: inline-block;
+    width: min(100%, 24rem);
+    vertical-align: middle;
+}
+
+#search + button {
+    vertical-align: middle;
+    margin-left: 0.25rem;
+}
+
+input[type="file"] {
+    display: block;
+    max-width: 100%;
+    font: inherit;
+    color: var(--muted);
+}
+
+input[type="file"]::file-selector-button {
+    margin-right: 0.75rem;
+    padding: 0.5rem 1rem;
+    font: inherit;
+    font-weight: 600;
+    color: var(--brand);
+    background: var(--surface);
+    border: 2px solid var(--brand);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: var(--brand);
+    color: #ffffff;
+}
+
+/* ---------- Forms (the HTML uses <br> for spacing; margins do it here) ---------- */
+form br {
+    display: none;
+}
+
+form > div {
+    margin-bottom: 1.25rem;
+}
+
+form textarea {
+    margin-bottom: 1.25rem;
+}
+
+/* ---------- Buttons ---------- */
+button {
+    display: inline-block;
+    min-height: 2.75rem;
+    padding: 0.65rem 1.5rem;
+    font: inherit;
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--brand);
+    border: 2px solid var(--brand);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+button:hover {
+    background: var(--brand-dark);
+    border-color: var(--brand-dark);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* ---------- Book listings (home page) ---------- */
+main > section:has(> article) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1rem;
+}
+
+main > section:has(> article) > h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.25rem 1.25rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 8px solid var(--brand);   /* the "book spine" */
+    border-radius: var(--radius);
+}
+
+article h3 {
+    margin-bottom: 0.5rem;
+}
+
+article p {
+    margin-bottom: 0.25rem;
+    color: var(--muted);
+}
+
+article a {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--brand);
+    background: var(--surface);
+    border: 2px solid var(--brand);
+    border-radius: 6px;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+/* keeps the link from hugging the text above it */
+article p:last-of-type {
+    margin-bottom: 1rem;
+}
+
+article a:hover {
+    background: var(--brand);
+    color: #ffffff;
+}
+
+/* ---------- Book details page ---------- */
+main > section h3 {
+    margin-top: 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+}
+
+main > section h2 + h3 {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+    font-size: 1.5rem;
+}
+
+/* "Course: CSCI 3703" style rows */
+p > strong:first-child {
+    display: inline-block;
+    min-width: 6.5rem;
+}
+
+/* Contact / Request Exchange become clear action buttons */
+p:has(> a[href="contact.html"]) {
+    display: inline-block;
+    margin: 0 0.75rem 0.75rem 0;
+}
+
+a[href="contact.html"] {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    min-height: 2.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffffff;
+    background: var(--brand);
+    border: 2px solid var(--brand);
+    border-radius: 6px;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+a[href="contact.html"]:hover {
+    background: var(--brand-dark);
+    border-color: var(--brand-dark);
+    color: #ffffff;
+}
+
+/* second button ("Request Exchange") is the outlined version */
+p:has(> a[href="contact.html"]) + p:has(> a[href="contact.html"]) a {
+    color: var(--brand);
+    background: var(--surface);
+}
+
+p:has(> a[href="contact.html"]) + p:has(> a[href="contact.html"]) a:hover {
+    color: #ffffff;
+    background: var(--brand);
+    border-color: var(--brand);
+}
+
+/* ---------- Back links at the bottom of pages ---------- */
+main > section > p:last-child {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    padding: 1.25rem max(1rem, calc((100% - var(--page-width)) / 2));
+    color: #d6e6e1;
+    background: var(--brand-dark);
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 600px) {
+    body {
+        font-size: 1rem;
+    }
+
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.3rem; }
+
+    main {
+        padding: 1.25rem 0.75rem;
+    }
+
+    main > section {
+        padding: 1.1rem;
+    }
+
+    nav a {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+
+    #search {
+        width: 100%;
+        margin-bottom: 0.75rem;
+    }
+
+    #search + button,
+    form button,
+    p:has(> a[href="contact.html"]),
+    a[href="contact.html"] {
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    p:has(> a[href="contact.html"]) {
+        display: block;
+        margin-right: 0;
+    }
+
+    p > strong:first-child {
+        display: block;
+        min-width: 0;
+    }
+}
+
+/* ---------- Respect reduced-motion settings ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+
+    button:active {
+        transform: none;
+    }
+}
