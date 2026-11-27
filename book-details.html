@@ -22,17 +22,17 @@
         <section>
             <h2>Book Details</h2>
 
-            <h3>Human-Computer Interaction</h3>
+            <h3 id="book-title">Human-Computer Interaction</h3>
 
-            <p><strong>Course:</strong> CSCI 3703</p>
-            <p><strong>Price:</strong> $30</p>
-            <p><strong>Condition:</strong> Like New</p>
-            <p><strong>Edition:</strong> Current Edition</p>
-            <p><strong>Seller:</strong> Student Seller</p>
+            <p><strong>Course:</strong> <span id="book-course">CSCI 3703</span></p>
+            <p><strong>Price:</strong> $<span id="book-price">30</span></p>
+            <p><strong>Condition:</strong> <span id="book-condition">Like New</span></p>
+            <p><strong>Edition:</strong> <span id="book-edition">Current Edition</span></p>
+            <p><strong>Seller:</strong> <span id="book-seller">Student Seller</span></p>
 
             <h3>Book Description</h3>
 
-            <p>
+            <p id="book-description">
                 This textbook is in good condition and is available
                 for another student in the course.
             </p>
@@ -40,11 +40,11 @@
             <h3>Options</h3>
 
             <p>
-                <a href="contact.html">Contact Owner</a>
+                <a id="contact-owner" href="contact.html">Contact Owner</a>
             </p>
 
             <p>
-                <a href="contact.html">Request Exchange</a>
+                <a id="request-exchange" href="contact.html">Request Exchange</a>
             </p>
 
             <p>
@@ -58,6 +58,8 @@
     <footer>
         <p>Campus Book Exchange</p>
     </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
